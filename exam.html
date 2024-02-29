@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Exam Portal</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #689ee0;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  #question-section {
+    margin-bottom: 40px;
+  }
+  
+  #question {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  #options {
+    margin-bottom: 20px;
+  }
+  
+  #options label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  #next-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #next-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  #result-section {
+    display: none;
+  }
+  
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #6b73ea;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            max-height: 80px;
+            
+        }
+        
+        main {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+        }
+        
+        .subject-container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+            -webkit-box-pack: start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
+            padding: 10px;
+            overflow-x: auto;
+            max-height: 50px;
+        }
+        
+        .subject {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            -webkit-transition: background-color 0.3s;
+            -o-transition: background-color 0.3s;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+        
+        .subject:hover {
+            background-color: #0056b3;
+        }
+        
+        #question-section {
+            margin-top: 20px;
+            padding: 20px;
+            -ms-flex-item-align: start;
+                align-self: flex-start; /* Align question section to the start of the main container */
+        }
+        
+        #question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        #options {
+            margin-bottom: 20px;
+        }
+        
+        #options label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        #next-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #next-btn:hover {
+            background-color: #0056b3;
+        }
+        
+
+#question-palette button {
+            display: block;
+            margin-bottom: 3px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            -webkit-transition: background-color 0.3s;
+            -o-transition: background-color 0.3s;
+            transition: background-color 0.3s;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 0 20%;
+                    flex: 1 0 20%;
+            margin: 5px;
+        }
+        
+        #question-palette button:hover {
+            background-color: #0056b3;
+        }
+
+#participant-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+}
+
+#participant-img {
+    width: 80px;
+    height: 80px;
+    margin-right: 17px;
+    bottom: 100px;
+}
+
+#timer {
+    font-size: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #a9f28e;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+#question-palette {
+    position: absolute;
+    top: 150px; /* Adjust the distance from the header */
+    right: 50px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+footer {
+    position: relative;
+    bottom: 0; /* Align to the bottom */
+    background-color: #3882f2;
+    color: #fff;
+    padding: 16px 0;
+    text-align: center;
+    top: 85px;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Online Exam Portal</h1>
+    <div id="participant-container">
+        <img src="pic/Ar.png" alt="Participant Image" id="participant-img"> <!-- Change the image src -->
+        <div id="timer">Time Left: <span id="hours">3</span> hours <span id="minutes">00</span> minutes</div>
+    </div>
+    <div class="subject-container">
+        <div class="subject">Physics</div>
+        <div class="subject">Chemistry</div>
+        <div class="subject">Math</div>
+        <div class="subject">Biology</div>
+        <div class="subject">History</div>
+        <div class="subject">Geography</div>
+        <div class="subject">English</div>
+        <div class="subject">Hindi</div>
+        <div class="subject">Bengali</div>
+    </div>
+</header>
+<main>
+    <section id="question-section">
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="next-btn">Next</button>
+    </section>
+    <section id="result-section">
+        <h2>Your Results</h2>
+        <div id="result"></div>
+    </section>
+</main>
+<div id="question-palette"></div>
+<footer>
+    <p>&copy; 2024 Online Exam Portal</p>
+</footer>
+<script src="script.js">
+   const questions = [
+    { 
+        question: "What is the SI unit of force?",
+        options: ["Newton", "Joule", "Watt", "Pascal"],
+        answer: "Newton"
+    },
+    { 
+      question: "What is the SI unit of force?",
+        options: ["Newton", "Joule", "Watt", "Pascal"],
+        answer: "Newton"
+    },
+    { 
+      question: "Question 3?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    { 
+      question: "Question 4?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    { 
+      question: "Question 5?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    { 
+      question: "Question 6?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    { 
+      question: "Question 7?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    { 
+      question: "Question 8?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    { 
+      question: "Question 9?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    { 
+      question: "Question 10?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      answer: "Option 3" 
+    },
+    
+    // Add more questions here
+   
+  ];
+  
+  const questionElement = document.getElementById('question');
+  const optionsElement = document.getElementById('options');
+  const nextButton = document.getElementById('next-btn');
+  const questionPalette = document.getElementById('question-palette');
+  
+  let currentQuestionIndex = 0;
+  
+  function displayQuestion(index) {
+    const currentQuestion = questions[index];
+    questionElement.textContent = `Question ${index + 1}: ${currentQuestion.question}`;
+    optionsElement.innerHTML = '';
+    currentQuestion.options.forEach((option, idx) => {
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = option;
+        optionsElement.appendChild(input);
+
+        const label = document.createElement('label');
+        label.textContent = option;
+        optionsElement.appendChild(label);
+
+        optionsElement.appendChild(document.createElement('br'));
+    });
+}
+  
+  function updateQuestionPalette() {
+    questionPalette.innerHTML = '';
+    for (let i = 0; i < questions.length; i++) {
+      const button = document.createElement('button');
+      button.textContent = i + 1;
+      button.addEventListener('click', () => {
+        currentQuestionIndex = i;
+        displayQuestion(currentQuestionIndex);
+      });
+      questionPalette.appendChild(button);
+    }
+  }
+  
+  nextButton.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      displayQuestion(currentQuestionIndex);
+    } else {
+      // Display result or handle end of questions
+    }
+  });
+  
+  // Initial setup
+  displayQuestion(currentQuestionIndex);
+  updateQuestionPalette();
+  // JavaScript code to update the timer
+const hoursElement = document.getElementById('hours');
+const minutesElement = document.getElementById('minutes');
+
+let hoursLeft = 3;
+let minutesLeft = 0;
+
+function updateTimer() {
+  minutesLeft--;
+  if (minutesLeft < 0) {
+    hoursLeft--;
+    minutesLeft = 59;
+  }
+
+  if (hoursLeft < 0) {
+    // Handle end of time
+    hoursLeft = 0;
+    minutesLeft = 0;
+    clearInterval(timerInterval);
+  }
+
+  hoursElement.textContent = hoursLeft.toString().padStart(2, '0');
+  minutesElement.textContent = minutesLeft.toString().padStart(2, '0');
+}
+
+// Call updateTimer every minute (60,000 milliseconds)
+const timerInterval = setInterval(updateTimer, 60000);
+
+// Initial update
+updateTimer();
+</script>
+</body>
+</html>
